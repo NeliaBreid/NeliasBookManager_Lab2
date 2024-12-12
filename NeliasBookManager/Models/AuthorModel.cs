@@ -13,7 +13,7 @@ namespace NeliasBookManager.presentation.Models
         //Kommer inte lägga så mycket här i G-uppgift, om ens något
         private string _firstName = "Egon";
         private string _lastName = "Egonsson";
-
+        public int Id { get; set; }
         public string FirstName
         {
             get => _firstName;
@@ -32,9 +32,10 @@ namespace NeliasBookManager.presentation.Models
                 RaisePropertyChanged(nameof(LastName));
             }
         }
-        public override string ToString()
-        {
-            return $"{FirstName} {LastName}";
-        }
+        public string FullName => $"{FirstName} {LastName}";
+        //public override string ToString()
+        //{
+        //    return $"{FirstName} {LastName}";
+        //}
     }
 }

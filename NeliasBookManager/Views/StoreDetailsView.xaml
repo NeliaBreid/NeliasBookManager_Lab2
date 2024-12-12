@@ -73,15 +73,15 @@
                       CanUserResizeRows="False"
                       SelectionMode="Single"
                       IsReadOnly="true"
-                     ItemsSource="{Binding BookInformationViewModel.BooksPerStore}"
-                      SelectedItem="{Binding BookInformationViewModel.ActiveBook}">
+                     ItemsSource="{Binding BooksInStore}"
+                      SelectedItem="{Binding ActiveBook}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="LagerSaldo" Binding="{Binding LagerSaldos[0].AntalBöcker}" />
-                    <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}" />
-                    <DataGridTextColumn Header="Titel" Binding="{Binding Titel}" />
-                    <DataGridTextColumn Header="Utgivningsår" Binding="{Binding Utgivningsår}" />
-                    <DataGridTextColumn Header="Pris" Binding="{Binding Pris}" />
-                    <DataGridTextColumn Header="Författare" Binding="{Binding Författars[0]}" />
+                    <DataGridTextColumn Header="LagerSaldo" Binding="{Binding AmountInStore}" />
+                    <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn13}" />
+                    <DataGridTextColumn Header="Titel" Binding="{Binding Title}" />
+                    <DataGridTextColumn Header="Utgivningsår" Binding="{Binding PublishingDate}" />
+                    <DataGridTextColumn Header="Pris" Binding="{Binding Price}" />
+                    <DataGridTextColumn Header="Författare" Binding="{Binding Authors[0].FullName}" />
                 </DataGrid.Columns>
             </DataGrid>
 

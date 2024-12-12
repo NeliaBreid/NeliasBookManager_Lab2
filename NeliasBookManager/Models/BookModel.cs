@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NeliasBookManager.Domain.ModelsDb;
 using NeliasBookManager.presentation.Viewmodel;
 
 namespace NeliasBookManager.presentation.Models
 {
     class BookModel: ViewModelBase
     {
-        private int _price = 0;
-        private string? _title = "Untitled";
-        private string _isbn13 = null!;
-        private string? _language = "unknown";
-        private int _publishingDate = 1000;
-        private int _amountInStore = 1;
+        private int _price ;
+        private string? _title ;
+        private string _isbn13 ;
+        private string? _language;
+        private int _publishingDate;
+        private int _amountInStore;
+        private ObservableCollection<AuthorModel> _authors;
 
         public string Isbn13
         {
@@ -72,6 +75,15 @@ namespace NeliasBookManager.presentation.Models
             {
                 _amountInStore = value;
                 RaisePropertyChanged(nameof(AmountInStore));
+            }
+        }
+        public ObservableCollection<AuthorModel> Authors
+        {
+            get => _authors;
+            set
+            {
+                _authors = value;
+                RaisePropertyChanged(nameof(Isbn13));
             }
         }
 

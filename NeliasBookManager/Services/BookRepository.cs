@@ -14,7 +14,7 @@ public class BookRepository
         _context = context;
     }
 
-    //public void GetBookByIsbn() 
+    //public void GetBookByIsbn()
     //{
     //    var book = _context.Books
     //        .Include(b => b.Authors)
@@ -22,7 +22,7 @@ public class BookRepository
 
     //    if (book == null)
     //    {
-          
+
     //    }
 
     //    return new BookModel()
@@ -34,11 +34,12 @@ public class BookRepository
     //        PublishingDate = book.PublishingDate,
     //        Authors = new ObservableCollection<AuthorModel>(book.Authors
     //            .Select(a => new AuthorModel()
-    //            {   Id = a.Id,
+    //            {
+    //                Id = a.Id,
     //                Birthday = a.Birthday,
     //                FirstName = a.FirstName,
     //                LastName = a.LastName
-    //            })) 
+    //            }))
 
     //    };
     //}
@@ -74,7 +75,7 @@ public class BookRepository
 
     //public ObservableCollection<BookModel> GetAllBooksByStore(StoreModel store)
     //{
-        
+
     //    var ib = _context.IventoryBalances.Where(i => i.StoreId == store.Id).ToList();
 
     //    var books = new ObservableCollection<BookModel>();
@@ -83,7 +84,7 @@ public class BookRepository
     //    {
     //        var book = GetBookByIsbn(isbn.Isbn13);
 
-    //        if(book != null) 
+    //        if (book != null)
     //            books.Add(book);
     //    }
 
@@ -153,5 +154,5 @@ public class BookRepository
     //    _context.SaveChanges();
     //}
 
-  
+
 }

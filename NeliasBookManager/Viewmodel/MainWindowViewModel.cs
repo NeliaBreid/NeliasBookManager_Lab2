@@ -106,7 +106,15 @@ namespace NeliasBookManager.presentation.Viewmodel
                             FirstName = a.Förnamn,
                             LastName = a.Efternamn
                         }).ToList()
-                    )
+                      ),
+                    AmountInStore = new ObservableCollection<InventoryBalanceModel>(
+                b.LagerSaldos.Select(ls => new InventoryBalanceModel()
+                {
+                    StoreId = ls.ButikId,
+                    Quantity = ls.AntalBöcker,
+                    Isbn13 = ls.Isbn
+                }).ToList()
+            )
                 }
             ).ToList();
 
@@ -134,10 +142,17 @@ namespace NeliasBookManager.presentation.Viewmodel
                             Id = a.FörfattarId,
                             FirstName = a.Förnamn,
                             LastName = a.Efternamn
-                        }).ToList()
-                    )
-                }
-            ).ToList();
+                        }).ToList()),
+                    AmountInStore = new ObservableCollection<InventoryBalanceModel>(
+                b.LagerSaldos.Select(ls => new InventoryBalanceModel()
+                {
+                    StoreId = ls.ButikId,
+                    Quantity = ls.AntalBöcker,
+                    Isbn13 = ls.Isbn
+                }).ToList()
+                )
+                
+                }).ToList();
             
             BooksInStore = new ObservableCollection<BookModel>(BooksPerStore);
         }

@@ -76,7 +76,7 @@
                      ItemsSource="{Binding BooksInStore}"
                       SelectedItem="{Binding ActiveBook}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="LagerSaldo" Binding="{Binding AmountInStore}" />
+                    <DataGridTextColumn Header="LagerSaldo" Binding="{Binding AmountInStore[0].Quantity}" />
                     <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn13}" />
                     <DataGridTextColumn Header="Titel" Binding="{Binding Title}" />
                     <DataGridTextColumn Header="Utgivningsår" Binding="{Binding PublishingDate}" />

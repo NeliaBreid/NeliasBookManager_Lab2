@@ -11,7 +11,6 @@ namespace NeliasBookManager.presentation.Models
     {
         private int? _quantity;
         public int StoreId { get; set; }
-
         public string Isbn13 { get; set; } = null!;
 
         public int? Quantity
@@ -25,7 +24,6 @@ namespace NeliasBookManager.presentation.Models
         }
 
         public virtual BookModel Isbn13Navigation { get; set; } = null!;
-
         public virtual StoreModel Store { get; set; } = null!;
 
     }

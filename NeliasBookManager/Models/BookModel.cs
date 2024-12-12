@@ -16,7 +16,7 @@ namespace NeliasBookManager.presentation.Models
         private string _isbn13 ;
         private string? _language;
         private int _publishingDate;
-        private int _amountInStore;
+        private ObservableCollection<InventoryBalanceModel> _amountInStore;
         private ObservableCollection<AuthorModel> _authors;
 
         public string Isbn13
@@ -68,7 +68,7 @@ namespace NeliasBookManager.presentation.Models
                 RaisePropertyChanged(nameof(PublishingDate));
             }
         }
-        public int AmountInStore
+        public ObservableCollection<InventoryBalanceModel> AmountInStore
         {
             get => _amountInStore;
             set

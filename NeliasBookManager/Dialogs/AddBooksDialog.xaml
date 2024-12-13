@@ -1,0 +1,30 @@
+﻿<Window x:Class="NeliasBookManager.presentation.Dialogs.AddBooksDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NeliasBookManager.presentation.Dialogs" xmlns:viewmodel="clr-namespace:NeliasBookManager.presentation.Viewmodel" d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
+        mc:Ignorable="d"
+        Title="AddBooksDialog" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="Välj en bok:" FontWeight="Bold" Margin="10"/>
+
+        <ListBox Grid.Row="1" ItemsSource="{Binding AllBooks, Mode=TwoWay}" 
+   SelectedItem="{Binding ActiveBook, Mode=TwoWay}" DisplayMemberPath="Title" Margin="10"/>
+
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Label Content="Antal:" VerticalAlignment="Center"/>
+            <TextBox Width="50" Text="{Binding QuantityToAdd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <Button Content="Lägg till" Command="{Binding AddBookToStoreCommand}" Margin="5"/>
+            <Button Content="Avbryt"  Margin="5" Click="Close_click"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

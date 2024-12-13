@@ -45,7 +45,7 @@
                Height="20" 
                Margin="5 0 0 0"  
                ToolTip="Add Book"
-                Command="{Binding BookInformationViewModel.OpenAddBooksCommand}">
+                Command="{Binding OpenAddBooksCommand}">
 
                 <fa:IconBlock Icon="Plus" Foreground="Black"/>
             </Button>
@@ -59,7 +59,7 @@
               Height="20" 
               Margin="5 0 0 0"  
               ToolTip="Remove Book"
-                Command="{Binding BookInformationViewModel.OpenRemoveBooksDialogCommand}">
+                Command="{Binding OpenRemoveBooksDialogCommand}">
                 <fa:IconBlock Icon="Minus" Foreground="Black"/>
             </Button>
 
@@ -73,10 +73,10 @@
                       CanUserResizeRows="False"
                       SelectionMode="Single"
                       IsReadOnly="true"
-                     ItemsSource="{Binding BooksInStore}"
+                     ItemsSource="{Binding BooksInStore, Mode=TwoWay}"
                       SelectedItem="{Binding ActiveBook}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="LagerSaldo" Binding="{Binding AmountInStore[0].Quantity}" />
+                    <DataGridTextColumn Header="LagerSaldo" Binding="{Binding AmountInStore[0].Quantity}"/>
                     <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn13}" />
                     <DataGridTextColumn Header="Titel" Binding="{Binding Title}" />
                     <DataGridTextColumn Header="Utgivningsår" Binding="{Binding PublishingDate}" />

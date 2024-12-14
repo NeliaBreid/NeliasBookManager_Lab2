@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NeliasBookManager.presentation.Dialogs" xmlns:viewmodel="clr-namespace:NeliasBookManager.presentation.Viewmodel" d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="AddBooksDialog" Height="450" Width="800">
+        Title="AddBooksDialog" Height="450" Width="550" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,13 +13,23 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="Välj en bok:" FontWeight="Bold" Margin="10"/>
+        <Label Grid.Row="0" Content="Välj en bok:" FontWeight="Bold" Margin="10" Style="{StaticResource CustomFont1}"/>
 
-        <ListBox Grid.Row="1" ItemsSource="{Binding AllBooks, Mode=TwoWay}" 
-   SelectedItem="{Binding ActiveBook, Mode=TwoWay}" DisplayMemberPath="Title" Margin="10"/>
+        <ListBox ItemsSource="{Binding AllBooks}" Margin="10"  SelectedItem="{Binding ActiveBook, Mode=TwoWay}" Style="{StaticResource CustomFont3}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="{Binding Isbn13}" Style="{StaticResource CustomFont2}"/>
+                        <Border Width="1" Margin="5,0,5,0"/>
+                        <TextBlock Text="{Binding Title}" />
+                        <TextBlock Text=" av " />
+                        <TextBlock Text="{Binding Authors[0].FullName}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
-
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" Style="{StaticResource CustomFont2}">
             <Label Content="Antal:" VerticalAlignment="Center"/>
             <TextBox Width="50" Text="{Binding QuantityToAdd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <Button Content="Lägg till" Command="{Binding AddBookToStoreCommand}" Margin="5"/>

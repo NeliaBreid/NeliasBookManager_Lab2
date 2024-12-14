@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NeliasBookManager.presentation.Views" xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" xmlns:viewmodel="clr-namespace:NeliasBookManager.presentation.Viewmodel" d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Style="{StaticResource CustomFont2}">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -18,9 +18,9 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <Label  Grid.Column="0" Grid.Row="0" Margin="5" FontWeight="Bold" Content="Butiker"/>
+        <Label  Grid.Column="0" Grid.Row="0" Margin="5" FontWeight="Bold" Content="Butiker" />
 
-        <ListBox 
+        <ListBox
                  Grid.Column="0" 
                  Grid.Row="2" 
                  SelectionMode="Extended" 
@@ -31,7 +31,7 @@
                 <DataTemplate>
                     <StackPanel>
                         <TextBlock/>
-                        <TextBlock FontWeight="Bold" Text="{Binding Name, Mode=TwoWay}"/>
+                        <TextBlock Style="{StaticResource CustomFont1}" FontWeight="Bold" Text="{Binding Name, Mode=TwoWay}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -73,8 +73,8 @@
                       CanUserResizeRows="False"
                       SelectionMode="Single"
                       IsReadOnly="true"
-                     ItemsSource="{Binding BooksInStore, Mode=TwoWay}"
-                      SelectedItem="{Binding ActiveBook}">
+                      Style="{StaticResource CustomFont3}"
+                     ItemsSource="{Binding BooksInStore, Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="LagerSaldo" Binding="{Binding AmountInStore[0].Quantity}"/>
                     <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn13}" />

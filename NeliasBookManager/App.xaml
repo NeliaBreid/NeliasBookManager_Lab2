@@ -4,6 +4,21 @@
              xmlns:local="clr-namespace:NeliasBookManager"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="CustomFont1">
+            <Setter Property="TextElement.FontFamily"
+                    Value="/Fonts/#Montserrat Bold">
+            </Setter>
+        </Style>
+        <Style x:Key="CustomFont2">
+            <Setter Property="TextElement.FontFamily"
+                    Value="/Fonts/#Montserrat ExtraBold">
+            </Setter>
+        </Style>
+        <Style x:Key="CustomFont3">
+            <Setter Property="TextElement.FontFamily"
+                    Value="/Fonts/#Montserrat Regular">
+            </Setter>
+        </Style>
+
     </Application.Resources>
 </Application>

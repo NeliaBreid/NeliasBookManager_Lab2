@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookButikAdminLab2.Command;
+using Labb2DataAcess.Services;
 using Microsoft.EntityFrameworkCore;
 using NeliasBookManager.Domain.ModelsDb;
 using NeliasBookManager.Infrastructure.Data;
@@ -55,9 +56,12 @@ namespace NeliasBookManager.presentation.Viewmodel
             set
             {
                 _activeStore = value;
+                BooksInStore.Clear();
+                TestGetBooksInStore(ActiveStore.Id);
                 RaisePropertyChanged(nameof(ActiveStore));
                 RaisePropertyChanged(nameof(BooksInStore));
-                GetBooksInStore();
+
+               
 
             }
         }
@@ -160,6 +164,7 @@ namespace NeliasBookManager.presentation.Viewmodel
                     dbSaldo.AntalBöcker = existingSaldo.Quantity;
                     context.SaveChanges();
                     GetBooksInStore();
+                    TestGetBooksInStore(dbSaldo.ButikId);
                     RaisePropertyChanged(nameof(BooksInStore)); //kanske är överflödigt?
                 }
             }
@@ -341,6 +346,42 @@ namespace NeliasBookManager.presentation.Viewmodel
                 
                 }).ToList();
             
+            BooksInStore = new ObservableCollection<BookModel>(BooksPerStore);
+        }
+        public void TestGetBooksInStore(int storeId) //TODO:lägga typ allBooks och något kriterie på butikID
+        {
+            using var context = new NeliasBokHandelContext();
+
+
+
+            var BooksPerStore = context.Böckers.Where(b => b.LagerSaldos.Any(ls => ls.ButikId == storeId)).
+                Select(
+                b => new BookModel()
+                {
+                    Isbn13 = b.Isbn,
+                    Title = b.Titel,
+                    Price = b.Pris,
+                    PublishingDate = b.Utgivningsår,
+                    Authors = new ObservableCollection<AuthorModel>(
+                        b.Författars.Select(a => new AuthorModel()
+                        {
+                            Id = a.FörfattarId,
+                            FirstName = a.Förnamn,
+                            LastName = a.Efternamn
+                        }).ToList()),
+                    AmountInStore = new ObservableCollection<InventoryBalanceModel>(
+                b.LagerSaldos
+                .Where(ls => ls.ButikId == storeId)
+                .Select(ls => new InventoryBalanceModel()
+                {
+                    StoreId = ls.ButikId,
+                    Quantity = ls.AntalBöcker,
+                    Isbn13 = ls.Isbn
+                }).ToList()
+                )
+
+                }).ToList();
+
             BooksInStore = new ObservableCollection<BookModel>(BooksPerStore);
         }
 

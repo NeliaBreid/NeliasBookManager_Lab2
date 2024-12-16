@@ -21,7 +21,7 @@
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
             <Label Content="Antal:" VerticalAlignment="Center"/>
-            <TextBox Width="50" Text="{Binding QuantityToAdd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBox Width="50" Text="{Binding QuantityToAlter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <Button Content="Ta bort" Command="{Binding RemoveBookFromStoreCommand}" Margin="5"/>
             <Button Content="Avbryt" Margin="5" Click="Close_Click"/>
         </StackPanel>

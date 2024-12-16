@@ -6,16 +6,17 @@
         xmlns:local="clr-namespace:NeliasBookManager.presentation.Dialogs" xmlns:viewmodel="clr-namespace:NeliasBookManager.presentation.Viewmodel" d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="AddBooksDialog" Height="450" Width="550" >
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Content="Välj en bok:" FontWeight="Bold" Margin="10" Style="{StaticResource CustomFont1}"/>
 
-        <ListBox ItemsSource="{Binding AllBooks}" Margin="10"  SelectedItem="{Binding ActiveBook, Mode=TwoWay}" Style="{StaticResource CustomFont3}">
+        <ListBox Grid.Row="1" ItemsSource="{Binding AllBooks}" Margin="10"  SelectedItem="{Binding ActiveBook, Mode=TwoWay}" Style="{StaticResource CustomFont3}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="5">
@@ -29,11 +30,13 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" Style="{StaticResource CustomFont2}">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,27,0,65" Style="{StaticResource CustomFont2}">
             <Label Content="Antal:" VerticalAlignment="Center"/>
-            <TextBox Width="50" Text="{Binding QuantityToAdd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBox Width="73" Height="20" Text="{Binding QuantityToAlter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,65,0,0" Style="{StaticResource CustomFont2}" Height="32" Width="131">
             <Button Content="Lägg till" Command="{Binding AddBookToStoreCommand}" Margin="5"/>
-            <Button Content="Avbryt"  Margin="5" Click="Close_click"/>
+            <Button Content="Tillbaka"  Margin="5" Click="Close_click"/>
         </StackPanel>
 
     </Grid>

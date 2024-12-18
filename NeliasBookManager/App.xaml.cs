@@ -19,19 +19,6 @@ namespace NeliasBookManager
         {
             base.OnStartup(e);
 
-            //var storeRepository = new StoreRepository();
-            //var bookRepository = new BookRepository();
-
-            //var bookViewModel = new BookViewModel(bookRepository);
-            //var storeViewModel = new StoreViewModel(storeRepository, bookRepository, bookViewModel);
-            //var mainWindowViewModel = new MainWindowViewModel(bookRepository, bookViewModel, storeViewModel);
-
-            //var mainWindow = new MainWindow()
-            //{
-            //    DataContext = mainWindowViewModel
-            //};
-
-
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using NeliasBookManager.Domain.ModelsDb;
+﻿using NeliasBookManager.Domain.ModelsDb;
 using NeliasBookManager.Infrastructure.Data;
 using NeliasBookManager.presentation.Models;
 
@@ -12,7 +6,7 @@ namespace NeliasBookManager.presentation.Services
 {
     public class InventoryRepository
     {
-        public InventoryRepository() //TODO:Lägg till context som en field!
+        public InventoryRepository()
         { 
         
         }
@@ -59,8 +53,6 @@ namespace NeliasBookManager.presentation.Services
             {
                 dbSaldo.AntalBöcker = existingSaldo.AntalBöcker;
                 context.SaveChanges();
-                
-               
             }
         }
     }

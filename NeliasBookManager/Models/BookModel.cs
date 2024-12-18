@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NeliasBookManager.Domain.ModelsDb;
+﻿using System.Collections.ObjectModel;
 using NeliasBookManager.presentation.Viewmodel;
 
 namespace NeliasBookManager.presentation.Models
@@ -13,10 +7,10 @@ namespace NeliasBookManager.presentation.Models
     {
         private int _price ;
         private string? _title ;
-        private string _isbn13 ;
+        private string? _isbn13 ;
         private int _publishingDate;
-        private ObservableCollection<InventoryBalanceModel> _amountInStore;
-        private ObservableCollection<AuthorModel> _authors;
+        private ObservableCollection<InventoryBalanceModel>? _amountInStore;
+        private ObservableCollection<AuthorModel>? _authors;
 
         public string Isbn13
         {

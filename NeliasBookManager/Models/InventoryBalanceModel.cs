@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using NeliasBookManager.presentation.Viewmodel;
+﻿using NeliasBookManager.presentation.Viewmodel;
 
 namespace NeliasBookManager.presentation.Models
 {
-   public class InventoryBalanceModel: ViewModelBase
+    public class InventoryBalanceModel: ViewModelBase
     {
         private int? _quantity;
         public int StoreId { get; set; }

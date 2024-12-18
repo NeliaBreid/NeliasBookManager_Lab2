@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using NeliasBookManager.Infrastructure.Data;
+﻿using NeliasBookManager.Infrastructure.Data;
 using NeliasBookManager.presentation.Models;
 
 namespace Labb2DataAcess.Services;
@@ -11,12 +10,12 @@ public class StoreRepository
 
     }
 
-    public List<StoreModel> LoadStores() //laddar in alla butiker och lägger dom i Stores, sätt dit en await
+    public List<StoreModel> LoadStores()
     {
         using var context = new NeliasBokHandelContext();
 
-        var storesFromDb = context.Butikers.Select(
-            s => new StoreModel()
+        var storesFromDb = context.Butikers
+            .Select(s => new StoreModel()
             {
                 Name = s.ButikNamn,
                 Id = s.ButikId,
@@ -28,9 +27,8 @@ public class StoreRepository
                      StoreId = ib.ButikId
                  }).ToList()
             }
-        ).ToList();
+            ).ToList();
 
         return storesFromDb;
-
     }
 }

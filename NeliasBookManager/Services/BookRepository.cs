@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using Microsoft.EntityFrameworkCore;
 using NeliasBookManager.Infrastructure.Data;
 using NeliasBookManager.presentation.Models;
 
@@ -11,15 +10,13 @@ public class BookRepository
     {
        
     }
-    public List<BookModel> GetBooksByIsbn(int storeId) //TODO:lägga typ allBooks och något kriterie på butikID
+    public List<BookModel> GetBooksByIsbn(int storeId)
     {
         using var context = new NeliasBokHandelContext();
 
-        
-
-        var booksPerStore = context.Böckers.Where(b => b.LagerSaldos.Any(ls => ls.ButikId == storeId)).
-            Select(
-            b => new BookModel()
+        var booksPerStore = context.Böckers
+            .Where(b => b.LagerSaldos.Any(ls => ls.ButikId == storeId))
+            .Select(b => new BookModel()
             {
                 Isbn13 = b.Isbn,
                 Title = b.Titel,
@@ -32,27 +29,25 @@ public class BookRepository
                         FirstName = a.Förnamn,
                         LastName = a.Efternamn
                     }).ToList()),
-                AmountInStore = new ObservableCollection<InventoryBalanceModel>(
-            b.LagerSaldos
+                AmountInStore = new ObservableCollection<InventoryBalanceModel>(b.LagerSaldos
             .Where(ls => ls.ButikId == storeId)
             .Select(ls => new InventoryBalanceModel()
-            {
-                StoreId = ls.ButikId,
-                Quantity = ls.AntalBöcker,
-                Isbn13 = ls.Isbn
-            }).ToList()
-            )
+                {
+                    StoreId = ls.ButikId,
+                    Quantity = ls.AntalBöcker,
+                    Isbn13 = ls.Isbn
+                }).ToList())
+            }
+            ).ToList();
 
-            }).ToList();
         return booksPerStore;
-     
     }
     public List<BookModel> GetAllBooks()
     {
         using var context = new NeliasBokHandelContext();
 
-        var books = context.Böckers.Select(
-            b => new BookModel()
+        var books = context.Böckers
+            .Select(b => new BookModel()
             {
                 Isbn13 = b.Isbn,
                 Title = b.Titel,
@@ -66,20 +61,16 @@ public class BookRepository
                         LastName = a.Efternamn
                     }).ToList()
                   ),
-                AmountInStore = new ObservableCollection<InventoryBalanceModel>(
-            b.LagerSaldos.Select(ls => new InventoryBalanceModel()
-            {
-                StoreId = ls.ButikId,
-                Quantity = ls.AntalBöcker,
-                Isbn13 = ls.Isbn
-            }).ToList()
-        )
+                AmountInStore = new ObservableCollection<InventoryBalanceModel>(b.LagerSaldos
+                .Select(ls => new InventoryBalanceModel()
+                {
+                    StoreId = ls.ButikId,
+                    Quantity = ls.AntalBöcker,
+                    Isbn13 = ls.Isbn
+                }).ToList())
             }
-        ).ToList();
+            ).ToList();
 
         return books;
-
     }
-
-
 }

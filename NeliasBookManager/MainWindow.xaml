@@ -6,9 +6,8 @@
         xmlns:local="clr-namespace:NeliasBookManager" 
         xmlns:view="clr-namespace:NeliasBookManager.presentation.Views"
         xmlns:viewmodel="clr-namespace:NeliasBookManager.presentation.Viewmodel"
-       
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="900">
+        Title="Nelias " Height="450" Width="900">
     <Grid>
         <view:StoreDetailsView/> 
     </Grid>

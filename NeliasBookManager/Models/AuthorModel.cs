@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NeliasBookManager.presentation.Viewmodel;
+﻿using NeliasBookManager.presentation.Viewmodel;
 
 namespace NeliasBookManager.presentation.Models
 {
     public class AuthorModel :ViewModelBase
     {
-        //Kommer inte lägga så mycket här i G-uppgift, om ens något
         private string _firstName;
         private string _lastName;
         public int Id { get; set; }
@@ -33,9 +26,5 @@ namespace NeliasBookManager.presentation.Models
             }
         }
         public string FullName => $"{FirstName} {LastName}";
-        //public override string ToString()
-        //{
-        //    return $"{FirstName} {LastName}";
-        //}
     }
 }

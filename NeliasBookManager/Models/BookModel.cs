@@ -9,12 +9,11 @@ using NeliasBookManager.presentation.Viewmodel;
 
 namespace NeliasBookManager.presentation.Models
 {
-    class BookModel: ViewModelBase
+    public class BookModel: ViewModelBase //TODO: Får jag använda ViewModelBase på mina models?
     {
         private int _price ;
         private string? _title ;
         private string _isbn13 ;
-        private string? _language;
         private int _publishingDate;
         private ObservableCollection<InventoryBalanceModel> _amountInStore;
         private ObservableCollection<AuthorModel> _authors;
@@ -39,15 +38,6 @@ namespace NeliasBookManager.presentation.Models
             }
         }
 
-        public string? Language //oklart om behövs
-        {
-            get => _language;
-            set
-            {
-                _language = value;
-                RaisePropertyChanged(nameof(Language));
-            }
-        }
 
         public int Price
         {
@@ -86,6 +76,5 @@ namespace NeliasBookManager.presentation.Models
                 RaisePropertyChanged(nameof(Isbn13));
             }
         }
-
     }
 }

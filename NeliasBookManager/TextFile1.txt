@@ -1,2 +1,0 @@
-﻿I ReadMefilen:
-Jag har skickat in bakfilen med databas, den behövre du restorea och sen behöver du en secrets.json som innehåller nyckeln ConnectionString samt som pekar på din server. 

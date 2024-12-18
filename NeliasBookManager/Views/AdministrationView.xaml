@@ -3,12 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" xmlns:viewmodel="clr-namespace:NeliasBookManager.presentation.Viewmodel" d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
-             xmlns:local="clr-namespace:NeliasBookManager.presentation.Views"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" 
+             xmlns:viewmodel="clr-namespace:NeliasBookManager.presentation.Viewmodel" 
+             xmlns:vm="clr-namespace:NeliasBookManager.presentation.Viewmodel"
+             xmlns:local="clr-namespace:NeliasBookManager.presentation.Views" 
+             d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Style="{StaticResource CustomFont2}"
->
-
+             d:DesignHeight="450" d:DesignWidth="800" Style="{StaticResource CustomFont2}">
 
     <Grid>
 
@@ -28,8 +29,8 @@
                  Grid.Column="0" 
                  Grid.Row="2" 
                  SelectionMode="Extended" 
-                 SelectedItem="{Binding ActiveStore, Mode=TwoWay}"
-                 ItemsSource="{Binding Stores, Mode=TwoWay}">
+                 SelectedItem="{Binding StoreViewModel.ActiveStore, Mode=TwoWay}"
+                 ItemsSource="{Binding StoreViewModel.Stores, Mode=TwoWay}">
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -55,7 +56,7 @@
             </Button>
 
 
-            <Label  Grid.Column="0" Grid.Row="0" Margin="5" FontWeight="Bold" Content="{Binding ActiveStore.Name, Mode=TwoWay}"/>
+            <Label  Grid.Column="0" Grid.Row="0" Margin="5" FontWeight="Bold" Content="{Binding StoreViewModel.ActiveStore.Name, Mode=TwoWay}"/>
 
             <Button 
               FontSize="15"
@@ -63,7 +64,7 @@
               Height="20" 
               Margin="5 0 0 0"  
               ToolTip="Remove Book"
-                Command="{Binding OpenRemoveBooksDialogCommand}">
+              Command="{Binding OpenRemoveBooksDialogCommand}">
                 <fa:IconBlock Icon="Minus" Foreground="Black"/>
             </Button>
 
@@ -78,7 +79,8 @@
                       SelectionMode="Single"
                       IsReadOnly="true"
                       Style="{StaticResource CustomFont3}"
-                     ItemsSource="{Binding BooksInStore, Mode=TwoWay}">
+                     ItemsSource="{Binding StoreViewModel.BooksInStore, Mode=TwoWay}">
+                
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="LagerSaldo" Binding="{Binding AmountInStore[0].Quantity}"/>
                     <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn13}" />

@@ -7,7 +7,7 @@ using NeliasBookManager.Domain.ModelsDb;
 namespace NeliasBookManager.Infrastructure.Data;
 
 public partial class NeliasBokHandelContext : DbContext
-{
+{ //TODO: Om tid över, dela upp den här enligt Fredriks video
     public NeliasBokHandelContext()
     {
     }

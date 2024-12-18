@@ -8,7 +8,7 @@ using NeliasBookManager.presentation.Viewmodel;
 
 namespace NeliasBookManager.presentation.Models
 {
-    class InventoryBalanceModel: ViewModelBase
+   public class InventoryBalanceModel: ViewModelBase
     {
         private int? _quantity;
         public int StoreId { get; set; }

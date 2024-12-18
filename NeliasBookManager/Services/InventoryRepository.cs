@@ -1,81 +1,67 @@
-﻿using NeliasBookManager.Infrastructure.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using NeliasBookManager.Domain.ModelsDb;
+using NeliasBookManager.Infrastructure.Data;
 using NeliasBookManager.presentation.Models;
 
-namespace Labb2DataAcess.Services;
-
-public class InventoryRepository
+namespace NeliasBookManager.presentation.Services
 {
-    private readonly NeliasBokHandelContext _context;
-
-    public InventoryRepository(NeliasBokHandelContext context)
+    public class InventoryRepository
     {
-        _context = context;
-    }
-
-    //public List<InventoryBalanceModel> GetAllIbs()
-    //{
-    //    var ibs = _context.IventoryBalances
-    //        .Select
-    //            (i => new InventoryBalanceModel
-    //                {
-    //                    Isbn13 = i.Isbn13,
-    //                    Quantity = i.Quantity,
-    //                    StoreId = i.StoreId,
-    //                }
-    //            ).ToList();
-    //    return ibs;
-    //}
-
-    //public int GetAmountOfBookInStore(StoreModel store, string isbn) 
-    //{
+        public InventoryRepository() //TODO:Lägg till context som en field!
+        { 
         
-    //    var ib = _context.IventoryBalances.FirstOrDefault(i => i.Isbn13 == isbn);
+        }
+    
+    
+       public void AddSaldoToDataBase(BookModel book, StoreModel store, int? quantityToAlter)
+        {
+            using var context = new NeliasBokHandelContext();
 
+            var newSaldoDb = new LagerSaldo
+            {
+                Isbn = book.Isbn13,
+                ButikId = store.Id,
+                AntalBöcker = quantityToAlter
+            };
 
-    //    return ib.Quantity;
-    //}
+            context.LagerSaldos.Add(newSaldoDb);
+            context.SaveChanges();
+            
+            
+        }
+        public void RemoveSaldofromDataBase(BookModel book, StoreModel store, int? quantityToAlter)
+        {
+            using var context = new NeliasBokHandelContext();
 
-    //public void UpdateBookQuantityForStore(StoreModel store, string isbn, int quantity)
-    //{
+            var newSaldoDb = new LagerSaldo
+            {
+                Isbn = book.Isbn13,
+                ButikId = store.Id,
+                AntalBöcker = quantityToAlter
+            };
 
-    //    var ib = _context.IventoryBalances.FirstOrDefault(i => (i.Isbn13 == isbn && i.Store.Name == store.Name));
+            context.LagerSaldos.Remove(newSaldoDb);
+            context.SaveChanges();
 
-    //    if (quantity <= 0)
-    //    {
-    //        if ((ib.Quantity += quantity) <= 0)
-    //        {
-    //            ib.Quantity = 0;
-    //            _context.SaveChanges();
-    //            return;
-    //        }
-    //    }
+        }
+        public void UpdateExistingSaldo(LagerSaldo existingSaldo, StoreModel store) //uppdaterar saldo, om det redan finns ett saldo
+        {
+            using var context = new NeliasBokHandelContext();
+            var dbSaldo = context.LagerSaldos
+                .FirstOrDefault(ls => ls.Isbn == existingSaldo.Isbn && ls.ButikId == store.Id);
 
-    //    ib.Quantity += quantity;
-
-    //    _context.SaveChanges();
-    //}
-
-    //public void AddBookToStore(StoreModel store, string isbn)
-    //{
-    //    var storeEntity = _context.Stores.FirstOrDefault(s => s.Name == store.Name);
-
-    //    var newIb = new IventoryBalance()
-    //    {
-    //        Isbn13 = isbn,
-    //        Quantity = 1,
-    //        StoreId = storeEntity.Id
-    //    };
-    //    _context.IventoryBalances.Add(newIb);
-
-    //    _context.SaveChanges();
-    //}
-
-    //public void DeleteBookFromStore(StoreModel store, string isbn)
-    //{
-    //    var ib = _context.IventoryBalances.FirstOrDefault(i => (i.Isbn13 == isbn && i.StoreId == store.Id));
-
-    //    _context.IventoryBalances.Remove(ib);
-
-    //    _context.SaveChanges();
-    //}
+            if (dbSaldo != null)
+            {
+                dbSaldo.AntalBöcker = existingSaldo.AntalBöcker;
+                context.SaveChanges();
+                
+               
+            }
+        }
+    }
 }

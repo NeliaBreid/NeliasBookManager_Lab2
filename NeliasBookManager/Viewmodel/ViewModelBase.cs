@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NeliasBookManager.presentation.Viewmodel
 {
-    internal class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
     {
         
             public event PropertyChangedEventHandler? PropertyChanged;

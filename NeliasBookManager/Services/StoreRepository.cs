@@ -1,42 +1,36 @@
-﻿using NeliasBookManager.Infrastructure.Data;
+﻿using System.Collections.ObjectModel;
+using NeliasBookManager.Infrastructure.Data;
 using NeliasBookManager.presentation.Models;
 
 namespace Labb2DataAcess.Services;
 
 public class StoreRepository
 {
-    private readonly NeliasBokHandelContext _context;
-
-    public StoreRepository(NeliasBokHandelContext context)
+    public StoreRepository()
     {
-        _context = context;
-    }
-
-
-    public void GetAllStores()
-    {
-       
-        var stores = _context.Butikers
-            .Select
-            (
-                s => new StoreModel()
-                {
-                    Name = s.ButikNamn,
-                    Id = s.ButikId,
-                    IventoryBalances = s.LagerSaldos
-                        .Select(ib => new InventoryBalanceModel()
-                        {
-                            Isbn13 = ib.Isbn,
-                            Quantity = ib.AntalBöcker,
-                            StoreId = ib.ButikId
-                        }).ToList()
-
-                }
-            ).ToList();
 
     }
 
-    
+    public List<StoreModel> LoadStores() //laddar in alla butiker och lägger dom i Stores, sätt dit en await
+    {
+        using var context = new NeliasBokHandelContext();
 
+        var storesFromDb = context.Butikers.Select(
+            s => new StoreModel()
+            {
+                Name = s.ButikNamn,
+                Id = s.ButikId,
+                InventoryBalances = s.LagerSaldos
+                 .Select(ib => new InventoryBalanceModel()
+                 {
+                     Isbn13 = ib.Isbn,
+                     Quantity = ib.AntalBöcker,
+                     StoreId = ib.ButikId
+                 }).ToList()
+            }
+        ).ToList();
 
+        return storesFromDb;
+
+    }
 }

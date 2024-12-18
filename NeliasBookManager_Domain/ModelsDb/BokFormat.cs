@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace NeliasBookManager.Domain.ModelsDb;
 
-public partial class BokFormat
+public partial class BokFormat //TODO: Döp om mappen till entites
 {
     public int FormatId { get; set; }
 

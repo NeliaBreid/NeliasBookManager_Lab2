@@ -20,7 +20,7 @@ namespace NeliasBookManager.presentation.Views
     /// </summary>
     public partial class StoreDetailsView : UserControl
     {
-        public StoreDetailsView()
+        public StoreDetailsView() //TODO: kolla på databinding, bind allt till rätt
         {
             InitializeComponent();
         }

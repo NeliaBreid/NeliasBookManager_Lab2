@@ -8,11 +8,11 @@ using NeliasBookManager.presentation.Viewmodel;
 
 namespace NeliasBookManager.presentation.Models
 {
-    class AuthorModel :ViewModelBase
+    public class AuthorModel :ViewModelBase
     {
         //Kommer inte lägga så mycket här i G-uppgift, om ens något
-        private string _firstName = "Egon";
-        private string _lastName = "Egonsson";
+        private string _firstName;
+        private string _lastName;
         public int Id { get; set; }
         public string FirstName
         {

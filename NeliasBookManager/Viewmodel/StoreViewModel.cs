@@ -22,14 +22,14 @@ namespace NeliasBookManager.presentation.Viewmodel
 
         public ObservableCollection<BookModel> _booksInStore;
 
-        private int? _quantityToAlter = 1;
-        public int? QuantityToAlter
+        private string _quantityToAlter = "1";
+        public string QuantityToAlter
         {
             get => _quantityToAlter;
             set
             {
-                if (value < 0) _quantityToAlter = 0;
-                else _quantityToAlter = value;
+ 
+                 _quantityToAlter = value;
                 RaisePropertyChanged(nameof(ActiveStore));
             }
         }
@@ -81,24 +81,25 @@ namespace NeliasBookManager.presentation.Viewmodel
         {
             using var context = new NeliasBokHandelContext();
 
-            if (ActiveBook != null)
+            if (ActiveBook != null && int.TryParse(QuantityToAlter, out var result))
             {
                 var existingSaldo = context.LagerSaldos.FirstOrDefault(ib => ib.Isbn == ActiveBook.Isbn13 && ib.ButikId == ActiveStore.Id);
 
-                if (QuantityToAlter <= 0 || QuantityToAlter == null) 
+                if (result <=0 || result == null)
+
                 {
                     return;
                 }
 
                 else if (existingSaldo == null) 
                 {
-                    _inventoryRepository.AddSaldoToDataBase(ActiveBook, ActiveStore, QuantityToAlter);
+                    _inventoryRepository.AddSaldoToDataBase(ActiveBook, ActiveStore, result);
                     GetBooksInActiveStore(ActiveStore.Id);
                 }
 
                 else
                 {
-                    existingSaldo.AntalBöcker += QuantityToAlter;
+                    existingSaldo.AntalBöcker += result;
                     _inventoryRepository.UpdateExistingSaldo(existingSaldo, ActiveStore);
                     GetBooksInActiveStore(ActiveStore.Id);
                 }
@@ -108,24 +109,24 @@ namespace NeliasBookManager.presentation.Viewmodel
         {
             using var context = new NeliasBokHandelContext();
 
-            if (ActiveBook != null)
+            if (ActiveBook != null && int.TryParse(QuantityToAlter, out var result))
             {
                 var existingSaldo = context.LagerSaldos.FirstOrDefault(ib => ib.Isbn == ActiveBook.Isbn13 && ib.ButikId == ActiveStore.Id);
 
-                if (QuantityToAlter <= 0 || QuantityToAlter == null || existingSaldo == null)
+                if (result <= 0 || result == null || existingSaldo == null)
                 {
                     return;
                 }
 
-                else if (existingSaldo.AntalBöcker - QuantityToAlter == 0)
+                else if (existingSaldo.AntalBöcker - result == 0)
                 {
-                    _inventoryRepository.RemoveSaldofromDataBase(ActiveBook, ActiveStore, QuantityToAlter);
+                    _inventoryRepository.RemoveSaldofromDataBase(ActiveBook, ActiveStore, result);
                     GetBooksInActiveStore(ActiveStore.Id);
                 }
 
-                else if (existingSaldo.AntalBöcker - QuantityToAlter >= 0)
+                else if (existingSaldo.AntalBöcker - result >= 0)
                 {
-                    existingSaldo.AntalBöcker -= QuantityToAlter;
+                    existingSaldo.AntalBöcker -= result;
                     _inventoryRepository.UpdateExistingSaldo(existingSaldo, ActiveStore);
                     GetBooksInActiveStore(ActiveStore.Id);
                 }

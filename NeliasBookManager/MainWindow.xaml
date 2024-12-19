@@ -7,7 +7,8 @@
         xmlns:view="clr-namespace:NeliasBookManager.presentation.Views"
         xmlns:viewmodel="clr-namespace:NeliasBookManager.presentation.Viewmodel"
         mc:Ignorable="d"
-        Title="Nelias " Height="450" Width="900">
+        Title="Nelias Bookadministrering" MinHeight="450" MinWidth="900" ResizeMode="CanResize"
+        Icon="Icon/Booki_ico.ico">
     <Grid>
         <view:StoreDetailsView/> 
     </Grid>

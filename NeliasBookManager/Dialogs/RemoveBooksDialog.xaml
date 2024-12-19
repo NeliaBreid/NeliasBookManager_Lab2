@@ -6,40 +6,40 @@
         xmlns:viewmodel="clr-namespace:NeliasBookManager.presentation.Viewmodel" d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
         mc:Ignorable="d"
         Background="BurlyWood"
-        Title="RemoveBooksDialog" Height="450" Width="550">
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Title="Ta bort böcker" Height="450" Width="550">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <Label Grid.Row="0" Content="Välj en bok:" FontWeight="Bold" Margin="10" Style="{StaticResource CustomFont1}"/>
+                <RowDefinition Height="Auto" MinHeight="44.627"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <ListBox Grid.Row="1" ItemsSource="{Binding BookViewModel.AllBooks}" Margin="10"  SelectedItem="{Binding BookViewModel.ActiveBook, Mode=TwoWay}" Style="{StaticResource CustomFont3}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Margin="5">
-                        <TextBlock Text="{Binding Isbn13}" Style="{StaticResource CustomFont2}"/>
-                        <Border Width="1" Margin="5,0,5,0"/>
-                        <TextBlock Text="{Binding Title}" />
-                        <TextBlock Text=" av " />
-                        <TextBlock Text="{Binding Authors[0].FullName}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            <Label Content="Välj en bok:" FontWeight="Bold" Margin="10,0,10,0" VerticalContentAlignment="Bottom" Style="{StaticResource CustomFont1}" Height="25" VerticalAlignment="Center"/>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,27,0,65" Style="{StaticResource CustomFont2}">
-            <Label Content="Antal:" VerticalAlignment="Center"/>
-            <TextBox Width="73" Text="{Binding StoreViewModel.QuantityToAlter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <ListBox Grid.Row="1" ItemsSource="{Binding BookViewModel.AllBooks}" Margin="10,0,10,10"  SelectedItem="{Binding BookViewModel.ActiveBook, Mode=TwoWay}" Style="{StaticResource CustomFont3}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="{Binding Isbn13}" Style="{StaticResource CustomFont2}"/>
+                            <Border Width="1" Margin="5,0,5,0"/>
+                            <TextBlock Text="{Binding Title}" />
+                            <TextBlock Text=" av " />
+                            <TextBlock Text="{Binding Authors[0].FullName}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
-        </StackPanel>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,65,0,0" Style="{StaticResource CustomFont2}" Height="32" Width="131">
-            <Button Content="Ta bort" Command="{Binding StoreViewModel.RemoveBookFromStoreCommand}" Margin="5"/>
-            <Button Content="Tillbaka"  Margin="5" Click="Close_Click"/>
-        </StackPanel>
-
-    </Grid>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Style="{StaticResource CustomFont2}" Width="130" Margin="0,0,0,90">
+                <Label Content="Antal:" VerticalAlignment="Center"/>
+                <TextBox Width="73" Height="20" Text="{Binding StoreViewModel.QuantityToAlter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Style="{StaticResource CustomFont2}" Height="30" Width="130">
+                <Button Content="Ta bort" Command="{Binding StoreViewModel.RemoveBookFromStoreCommand}" Margin="5"/>
+                <Button Content="Tillbaka"  Margin="5" Click="Close_Click"/>
+            </StackPanel>
+        </Grid>
 </Window>

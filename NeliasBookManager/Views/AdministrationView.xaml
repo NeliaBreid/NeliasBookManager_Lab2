@@ -7,7 +7,7 @@
              xmlns:viewmodel="clr-namespace:NeliasBookManager.presentation.Viewmodel"
              d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Style="{StaticResource CustomFont2}"
+             Style="{StaticResource CustomFont2}"
              Background="BurlyWood">
 
     <Grid>
@@ -71,29 +71,26 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
             <DataGrid AutoGenerateColumns="False"
-                      HorizontalScrollBarVisibility="Visible"
+                      ColumnWidth=""
                       CanUserAddRows="False"
                       CanUserResizeColumns="False"
                       CanUserDeleteRows="False"
                       CanUserReorderColumns="False"
                       CanUserResizeRows="False"
-                      SelectionMode="Single"
                       IsReadOnly="true"
                       Margin="2,0,5,2"
                       Style="{StaticResource CustomFont3}"
-                     ItemsSource="{Binding StoreViewModel.BooksInStore, Mode=TwoWay}">
-                
+                      ItemsSource="{Binding StoreViewModel.BooksInStore, Mode=TwoWay}">
+
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="LagerSaldo" Binding="{Binding AmountInStore[0].Quantity}"/>
-                    <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn13}" />
-                    <DataGridTextColumn Header="Titel" Binding="{Binding Title}" />
-                    <DataGridTextColumn Header="Utgivningsår" Binding="{Binding PublishingDate}" />
-                    <DataGridTextColumn Header="Pris" Binding="{Binding Price}" />
-                    <DataGridTextColumn Header="Författare" Binding="{Binding Authors[0].FullName}" />
+                    <DataGridTextColumn Header="Saldo" Binding="{Binding AmountInStore[0].Quantity}" Width="*" />
+                    <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn13}"  Width="2*" />
+                    <DataGridTextColumn Header="Titel" Binding="{Binding Title}"  Width="5*" />
+                    <DataGridTextColumn Header="Utgivningsår" Binding="{Binding PublishingDate}"  Width="2*" />
+                    <DataGridTextColumn Header="Pris" Binding="{Binding Price}"  Width="*" />
+                    <DataGridTextColumn Header="Författare" Binding="{Binding Authors[0].FullName}"  Width="2*" />
                 </DataGrid.Columns>
             </DataGrid>
-
-
         </StackPanel>
 
     </Grid>

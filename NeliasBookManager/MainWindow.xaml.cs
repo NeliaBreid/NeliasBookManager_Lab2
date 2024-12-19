@@ -16,7 +16,6 @@ namespace NeliasBookManager
             var storeRepository = new StoreRepository();
             var bookRepository = new BookRepository();
             var inventoryRepository = new InventoryRepository();
-
             var bookViewModel = new BookViewModel(bookRepository);
             var storeViewModel = new StoreViewModel(storeRepository, bookRepository, inventoryRepository, bookViewModel);
             var mainWindowViewModel = new MainWindowViewModel(bookRepository, bookViewModel, storeViewModel);
@@ -24,6 +23,5 @@ namespace NeliasBookManager
             DataContext = mainWindowViewModel;
             
         }
-
     }
 }

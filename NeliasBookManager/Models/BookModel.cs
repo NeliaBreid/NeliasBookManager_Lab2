@@ -3,7 +3,7 @@ using NeliasBookManager.presentation.Viewmodel;
 
 namespace NeliasBookManager.presentation.Models
 {
-    public class BookModel: ViewModelBase //TODO: Får jag använda ViewModelBase på mina models?
+    public class BookModel: ViewModelBase
     {
         private int _price ;
         private string? _title ;
@@ -12,7 +12,7 @@ namespace NeliasBookManager.presentation.Models
         private ObservableCollection<InventoryBalanceModel>? _amountInStore;
         private ObservableCollection<AuthorModel>? _authors;
 
-        public string Isbn13
+        public string ?Isbn13
         {
             get => _isbn13;
             set
@@ -52,7 +52,7 @@ namespace NeliasBookManager.presentation.Models
                 RaisePropertyChanged(nameof(PublishingDate));
             }
         }
-        public ObservableCollection<InventoryBalanceModel> AmountInStore
+        public ObservableCollection<InventoryBalanceModel> ?AmountInStore
         {
             get => _amountInStore;
             set
@@ -61,7 +61,7 @@ namespace NeliasBookManager.presentation.Models
                 RaisePropertyChanged(nameof(AmountInStore));
             }
         }
-        public ObservableCollection<AuthorModel> Authors
+        public ObservableCollection<AuthorModel> ?Authors
         {
             get => _authors;
             set

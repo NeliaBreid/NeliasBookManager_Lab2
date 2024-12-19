@@ -7,19 +7,20 @@
         d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
         mc:Ignorable="d"
         Background="BurlyWood"
-        Title="AddBooksDialog" Height="450" Width="550" >
-
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Title="Lägg till böcker" Height="450" Width="550" >
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="44.627"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="Välj en bok:" FontWeight="Bold" Margin="10" Style="{StaticResource CustomFont1}"/>
+        <Label Content="Välj en bok:" FontWeight="Bold" Margin="10,0,10,0" VerticalContentAlignment="Bottom" Style="{StaticResource CustomFont1}" Height="25" VerticalAlignment="Center"/>
 
-        <ListBox Grid.Row="1" ItemsSource="{Binding BookViewModel.AllBooks}" Margin="10"  SelectedItem="{Binding BookViewModel.ActiveBook, Mode=TwoWay}" Style="{StaticResource CustomFont3}">
+        <ListBox Grid.Row="1" ItemsSource="{Binding BookViewModel.AllBooks}" Margin="10,0,10,10"  SelectedItem="{Binding BookViewModel.ActiveBook, Mode=TwoWay}" Style="{StaticResource CustomFont3}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="5">
@@ -33,11 +34,11 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,27,0,65" Style="{StaticResource CustomFont2}">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Style="{StaticResource CustomFont2}" Width="130" Margin="0,0,0,90">
             <Label Content="Antal:" VerticalAlignment="Center"/>
             <TextBox Width="73" Height="20" Text="{Binding StoreViewModel.QuantityToAlter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
         </StackPanel>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,65,0,0" Style="{StaticResource CustomFont2}" Height="32" Width="131">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Style="{StaticResource CustomFont2}" Height="30" Width="130">
             <Button Content="Lägg till" Command="{Binding StoreViewModel.AddBookToStoreCommand}" Margin="5"/>
             <Button Content="Tillbaka"  Margin="5" Click="Close_click"/>
         </StackPanel>

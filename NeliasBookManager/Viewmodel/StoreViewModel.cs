@@ -85,8 +85,7 @@ namespace NeliasBookManager.presentation.Viewmodel
             {
                 var existingSaldo = context.LagerSaldos.FirstOrDefault(ib => ib.Isbn == ActiveBook.Isbn13 && ib.ButikId == ActiveStore.Id);
 
-                if (result <=0 || result == null)
-
+                if (result <= 0)
                 {
                     return;
                 }
@@ -113,7 +112,7 @@ namespace NeliasBookManager.presentation.Viewmodel
             {
                 var existingSaldo = context.LagerSaldos.FirstOrDefault(ib => ib.Isbn == ActiveBook.Isbn13 && ib.ButikId == ActiveStore.Id);
 
-                if (result <= 0 || result == null || existingSaldo == null)
+                if (result <= 0 || existingSaldo == null)
                 {
                     return;
                 }
